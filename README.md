@@ -1,16 +1,20 @@
-# stogo 
 
+
+# stogo 
 多连表查询语句直接生成 go DTO 层结构体代码
 
-## Quick start 
+> 许多 orm 框架都有能直接单表映射代码的功能, 但是多表却做不到
+> **因为多表组合的可能是无限种**
+> 每次写数据映射表都很难受, 于是答主就写了一个工具支持**连表查询语句直接生成 golang DTO 层结构体代码**
+## 快速开始
 
-### get
+### get 
 
 ```bash
-go get -u github.com/dengjiawen8955/stogo@v0.0.2
+go get -u github.com/dengjiawen8955/stogo@v0.0.3
 ```
 
-### usage
+### 使用示例
 
 ```go
 package tests
@@ -51,4 +55,26 @@ WHERE
     //多连表查询语句直接生成 go DTO 层结构体代码
 	stogo.GenerateStruct(ssql, driver)
 }
-``
+```
+输出效果如下:
+
+```go
+
+type AutoDTO struct {
+	QId              int64   `db:"q_id"`
+	Title            string  `db:"title"`
+	Info             string  `db:"info"`
+	QCurrency        float64 `db:"q_currency"`
+	CommentNum       int64   `db:"comment_num"`
+	ReviewNum        int64   `db:"review_num"`
+	QUpdateTime      string  `db:"q_update_time"`
+	Kind1Id          int64   `db:"kind1_id"`
+	Kind2Id          int64   `db:"kind2_id"`
+	QuestionerId     int64   `db:"questioner_id"`
+	UId              int64   `db:"u_id"`
+	Avatar           string  `db:"avatar"`
+	Nickname         string  `db:"nickname"`
+	AnswerScoreTotal int64   `db:"answer_score_total"`
+	AnswerScoreNum   int64   `db:"answer_score_num"`
+}
+```
