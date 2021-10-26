@@ -11,7 +11,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-type Line struct {
+type line struct {
 	Name string
 	Type string
 	Tag  string
@@ -50,10 +50,10 @@ func GenerateStruct(ssql, dataSourceName string) {
 		fmt.Printf("err: %v\n", err)
 		return
 	}
-	ls := make([]*Line, 0)
+	ls := make([]*line, 0)
 	//储存变量
 	for _, ct := range cts {
-		l := new(Line)
+		l := new(line)
 		//下划线
 		name := ct.Name()
 		//tag
