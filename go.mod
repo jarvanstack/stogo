@@ -1,4 +1,4 @@
-module github.com/dengjiawen8955/stogo
+module github.com/jarvanstack/stogo
 
 go 1.17
 
